@@ -37,7 +37,7 @@ abstract class _HomePageControllerBase with Store {
   void filterAgentsStatus(){
     agentsStatus().then((_) {
       
-        agents = agentModelList ?? [];
+        agents = agentModelList;
         agentsByRole =
             separateAgentsByRole(agents);
         filterAgentsByRole(tabs[tabController!.index]);
