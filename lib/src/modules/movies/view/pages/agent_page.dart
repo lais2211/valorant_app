@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:valorant_app/src/modules/movies/data/models/agent_model.dart';
+import 'package:valorant_app/src/modules/movies/view/components/agent_header.dart';
+
+import '../components/agent_description.dart';
 
 class AgentPage extends StatefulWidget {
-  const AgentPage({super.key});
+  const AgentPage({Key? key, required this.agent}) : super(key: key);
+
+  final AgentModel agent;
 
   @override
   State<AgentPage> createState() => _AgentPageState();
@@ -10,6 +16,28 @@ class AgentPage extends StatefulWidget {
 class _AgentPageState extends State<AgentPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        toolbarHeight: 200,
+        leading: Align(
+          alignment: Alignment.topLeft,
+          child: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.arrow_back),
+          ),
+        ),
+        flexibleSpace: AgentHeader(
+          agentImage: widget.agent.picture,
+          agent: widget.agent,
+          agentName: widget.agent.name,
+          agentType: widget.agent.role.displayName,
+        ),
+      ),
+      body: AgentDescription(widget: widget),
+    );
   }
 }
+
+
