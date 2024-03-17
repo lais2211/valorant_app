@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:valorant_app/src/modules/movies/view/components/ability_card.dart';
+import 'package:valorant_app/src/modules/agents/view/components/ability_card.dart';
 
 import '../../l10n/text_l10n.dart';
 import '../pages/agent_page.dart';
@@ -48,6 +48,7 @@ class AgentDescription extends StatelessWidget {
                         AbilityCard(
                           abilityName: ability.displayName,
                           abilityDescription: ability.description,
+                          iconImage: ability.displayIcon,
                         ),
                         const SizedBox(
                             height: 10),

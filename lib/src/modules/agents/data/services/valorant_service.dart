@@ -27,7 +27,7 @@ final TextL10n text = TextL10n();
 Future<List<AgentModel>> getAgents() async {
   try {
     Dio dio = Dio();
-    Response response = await dio.get('https://valorant-api.com/v1/agents?isPlayableCharacter=true');
+    Response response = await dio.get('https://valorant-api.com/v1/agents?language=pt-BR&isPlayableCharacter=true');
     
     if (response.statusCode == 200) {
       List<dynamic> agentData = response.data['data'];

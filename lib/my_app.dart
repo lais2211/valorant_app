@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:valorant_app/src/modules/movies/view/pages/home_page.dart';
+import 'package:valorant_app/src/modules/agents/view/pages/home_page.dart';
 
 
 class MyApp extends StatefulWidget {

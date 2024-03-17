@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
-import 'package:valorant_app/src/modules/movies/view/components/agent_card.dart';
-import 'package:valorant_app/src/modules/movies/view/components/build_tap.dart';
 import 'package:valorant_app/src/theme/theme_colors.dart';
 
 import '../../data/models/agent_model.dart';
 import '../../l10n/text_l10n.dart';
+import '../components/agent_card.dart';
+import '../components/build_tap.dart';
 import '../controllers/home_page_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,35 +21,14 @@ class _HomePageState extends State<HomePage>
   final TextL10n text = TextL10n();
   HomePageController controller = GetIt.I();
 
-  late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: controller.tabs.length, vsync: this);
-    controller.agentsStatus().then((_) {
-      setState(() {
-        controller.agents = controller.agentModelList ?? [];
-        controller.agentsByRole =
-            controller.separateAgentsByRole(controller.agents);
-        filterAgentsByRole(controller.tabs[_tabController.index]);
-      });
-    });
+    controller.tabController = TabController(length: controller.tabs.length, vsync: this);
+    controller.filterAgentsStatus();
   }
 
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
-
-  void filterAgentsByRole(String roleDisplayName) {
-    setState(() {
-      controller.agents = controller.agentsByRole.containsKey(roleDisplayName)
-          ? List<AgentModel>.from(controller.agentsByRole[roleDisplayName]!)
-          : [];
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,15 +54,15 @@ class _HomePageState extends State<HomePage>
             height: 20,
           ),
           TabBar(
-            controller: _tabController,
+            controller: controller.tabController,
             labelPadding: const EdgeInsets.symmetric(horizontal: 5),
             tabs: controller.tabs
                 .map((text) => BuildTab(text, context))
                 .toList(),
             onTap: (index) {
               setState(() {
-                _tabController.index = index;
-                filterAgentsByRole(controller.tabs[index]);
+                controller.tabController!.index = index;
+                controller.filterAgentsByRole(controller.tabs[index]);
               });
             },
             indicatorColor: ColorSys.ksecondary,

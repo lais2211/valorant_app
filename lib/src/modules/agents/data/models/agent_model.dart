@@ -1,8 +1,7 @@
 import 'dart:ui';
-
-import 'package:valorant_app/src/modules/movies/data/models/ability_model.dart';
 import 'package:valorant_app/src/theme/string_to_color.dart';
 
+import 'ability_model.dart';
 import 'role_model.dart';
 
 class AgentModel {

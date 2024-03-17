@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:valorant_app/src/modules/movies/data/models/agent_model.dart';
-import 'package:valorant_app/src/modules/movies/view/components/agent_header.dart';
 
+import '../../data/models/agent_model.dart';
 import '../components/agent_description.dart';
+import '../components/agent_header.dart';
 
 class AgentPage extends StatefulWidget {
   const AgentPage({Key? key, required this.agent}) : super(key: key);

@@ -13,17 +13,9 @@ class TextL10n {
 
   String get error => 'Error';
 
-  String get controllers => 'Controllers';
+  String get title => 'Escolha seu agente';
 
-  String get duelists => 'Duelists';
+  String get abilities => 'Abilidades';
 
-  String get initiators => 'Initiators';
-
-  String get sentinels => 'Sentinels';
-
-  String get title => 'Choose your Agent';
-
-  String get abilities => 'Abilities';
-
-  String get biography => 'Biography';
+  String get biography => 'Biografia';
 }

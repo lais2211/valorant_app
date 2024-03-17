@@ -1,5 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:valorant_app/src/modules/movies/data/services/valorant_service.dart';
+import 'package:valorant_app/src/modules/agents/data/services/valorant_service.dart';
 
 import '../../data/models/agent_model.dart';
 import '../components/widget_status.dart';
@@ -23,6 +24,25 @@ abstract class _HomePageControllerBase with Store {
     var agents = await service.getAgents();
     agentModelList.addAll(agents);
     return agentModelList;
+  }
+
+  @action
+  void filterAgentsByRole(String roleDisplayName) {
+    agents = agentsByRole.containsKey(roleDisplayName)
+        ? List<AgentModel>.from(agentsByRole[roleDisplayName]!)
+        : [];
+  }
+
+  @action
+  void filterAgentsStatus(){
+    agentsStatus().then((_) {
+      
+        agents = agentModelList ?? [];
+        agentsByRole =
+            separateAgentsByRole(agents);
+        filterAgentsByRole(tabs[tabController!.index]);
+    
+    });
   }
 
   @action
@@ -52,12 +72,14 @@ abstract class _HomePageControllerBase with Store {
   }
 
   @observable
-  List<String> tabs = ['Controller', 'Duelist', 'Initiator', 'Sentinel'];
-  
+  List<String> tabs = ['Controlador', 'Duelista', 'Iniciador', 'Sentinela'];
+
   @observable
   List<AgentModel> agents = [];
 
   @observable
   Map<String, List<AgentModel>> agentsByRole = {};
 
+  @observable
+  TabController? tabController;
 }

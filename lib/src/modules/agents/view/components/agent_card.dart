@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:valorant_app/src/modules/movies/view/components/text_title.dart';
-import 'package:valorant_app/src/modules/movies/view/pages/agent_page.dart';
-
 import '../../data/models/agent_model.dart';
+import '../pages/agent_page.dart';
+import 'text_title.dart';
 
 class AgentCard extends StatelessWidget {
   const AgentCard({

@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../data/models/agent_model.dart';
 import 'text_title.dart';
-import 'text_type.dart';
 
 class AgentHeader extends StatefulWidget {
   const AgentHeader(

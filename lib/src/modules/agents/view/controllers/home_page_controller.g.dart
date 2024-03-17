@@ -89,6 +89,22 @@ mixin _$HomePageController on _HomePageControllerBase, Store {
     });
   }
 
+  late final _$tabControllerAtom =
+      Atom(name: '_HomePageControllerBase.tabController', context: context);
+
+  @override
+  TabController? get tabController {
+    _$tabControllerAtom.reportRead();
+    return super.tabController;
+  }
+
+  @override
+  set tabController(TabController? value) {
+    _$tabControllerAtom.reportWrite(value, super.tabController, () {
+      super.tabController = value;
+    });
+  }
+
   late final _$getAgentsAsyncAction =
       AsyncAction('_HomePageControllerBase.getAgents', context: context);
 
@@ -109,6 +125,28 @@ mixin _$HomePageController on _HomePageControllerBase, Store {
       ActionController(name: '_HomePageControllerBase', context: context);
 
   @override
+  void filterAgentsByRole(String roleDisplayName) {
+    final _$actionInfo = _$_HomePageControllerBaseActionController.startAction(
+        name: '_HomePageControllerBase.filterAgentsByRole');
+    try {
+      return super.filterAgentsByRole(roleDisplayName);
+    } finally {
+      _$_HomePageControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void filterAgentsStatus() {
+    final _$actionInfo = _$_HomePageControllerBaseActionController.startAction(
+        name: '_HomePageControllerBase.filterAgentsStatus');
+    try {
+      return super.filterAgentsStatus();
+    } finally {
+      _$_HomePageControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   Map<String, List<AgentModel>> separateAgentsByRole(List<AgentModel> agents) {
     final _$actionInfo = _$_HomePageControllerBaseActionController.startAction(
         name: '_HomePageControllerBase.separateAgentsByRole');
@@ -126,7 +164,8 @@ getAgentsStatus: ${getAgentsStatus},
 agentModelList: ${agentModelList},
 tabs: ${tabs},
 agents: ${agents},
-agentsByRole: ${agentsByRole}
+agentsByRole: ${agentsByRole},
+tabController: ${tabController}
     ''';
   }
 }
