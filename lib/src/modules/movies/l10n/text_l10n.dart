@@ -22,4 +22,8 @@ class TextL10n {
   String get sentinels => 'Sentinels';
 
   String get title => 'Choose your Agent';
+
+  String get abilities => 'Abilities';
+
+  String get biography => 'Biography';
 }
